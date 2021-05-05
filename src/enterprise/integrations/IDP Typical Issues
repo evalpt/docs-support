@@ -1,0 +1,5 @@
+- LDAP max sAMAACCOUNT size is set to 20chr. It means that if the user has more than 20chr it will be cutted and it will get various error messages. 
+   The option is adding another UPN on AD Configuration.  Also, we could advise them to configure EmailNickName (available field on LDAP).
+
+- Login Persistency (NameIdPolicy): Some customers complain that they can’t login in their applications due to the way the Login Persistency is being made on their authentication server's side. They can easily reach this conclusion by using a SAMLTrace and seeing the http request. 
+ To overcome this situation you’ll have to make a small conversion between the User that OutSystems provides and the user that’s kept persistent on Authentication side as shown in the picture below.
