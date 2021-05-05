@@ -1,0 +1,24 @@
+CDN Implementation
+CDN is a Content Delivery Network. That means the CDN is a cache mechanism and is mostly useful for customers that have applications with a lot of static content. A good example of applications that have a lot of static content are Mobile Applications. 
+These applications have a lot of css, js, jpeg and other files that are static, meaning that they only change after a push of a new version of the application.
+With a CDN on your infrastructure those files will be presented to the end-users by CDN instead of the Front-end servers. This will remove load from your servers and in this way you can save hardware resources and have a better performance.
+With a CDN the hydration process will be served on CDN instead of Front-End Servers and this will prevent outages and the need for hardware scale-up.
+Configuration
+The following configurations are considered relevant on the CDN side in order to take advantage of its benefits for OS apps:
+Add an Alias canonical name (CNAME) resource record in DNS 
+Configure an additional CNAME in DNS with the same URL that is showing up on the Environment Hostname (Service Center Administration tab)
+App Certificate in CDN
+To ensure a secure connection, the certificate used by the apps that will be served by the CDN needs to be installed on the CDN
+If more than one certificate is used (for different apps) then more than one CDN needs to be configured
+Define the HTTP versions (supported by OS) that the CDN will use
+HTTP/2; HTTP/1.1; HTTP/1.0
+CDN should deliver the requests to Load Balancer
+The origin domain name and path should be the Load Balancer address
+Don’t use ForwardCookies
+This means that the CDN will not cache the object based on a cookie sent by the viewer
+Redirect to HTTPS always
+When accessing the url via HTTP, the CDN will redirect to HTTPS
+Setting up OriginKeepaliveTimeout to 60 sec
+This is the time that CDN will maintain an idle connection before timeout with the origin
+Setting up OriginReadTimeout to 30 sec
+This is the amount of time that CDN will wait for a response from origin
